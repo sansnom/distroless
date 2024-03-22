@@ -23,7 +23,7 @@ JAVA_ARCHITECTURES = [
     "ppc64le",
 ]
 
-JAVA_21_ARCHITECTURES = [
+JAVA_ADOPTIUM_ARCHITECTURES = [
     "amd64",
     "arm64",
     # "s390x", adoptium doesn't have a build yet
@@ -34,6 +34,16 @@ JAVA_VERSIONS_PER_DISTRO = [
     ("11", "debian11"),
     ("17", "debian11"),
     ("17", "debian12"),
+]
+
+JAVA_ADOPTIUM_VERSIONS = [
+    "21",
+    "22"
+]
+
+JAVA_ADOPTIUM_VERSIONS_PER_DISTRO = [
+    ("21", "debian12"),
+    ("22", "debian12")
 ]
 
 [
@@ -75,8 +85,8 @@ JAVA_VERSIONS_PER_DISTRO = [
             "@temurin" + java_version + "_jre_" + arch,
         ],
     )
-    for arch in JAVA_21_ARCHITECTURES
-    for java_version in ["21"]
+    for arch in JAVA_ADOPTIUM_ARCHITECTURES
+    for java_version in JAVA_ADOPTIUM_VERSIONS
 ]
 
 [
@@ -89,8 +99,8 @@ JAVA_VERSIONS_PER_DISTRO = [
             "@temurin" + java_version + "_jdk_" + arch,
         ],
     )
-    for arch in JAVA_21_ARCHITECTURES
-    for java_version in ["21"]
+    for arch in JAVA_ADOPTIUM_ARCHITECTURES
+    for java_version in JAVA_ADOPTIUM_VERSIONS
 ]
 
 # Base
@@ -257,11 +267,11 @@ DISTRO_SPECIFIC_LIBRARIES = {
         name = "java" + java_version + "_" + user + "_" + distro,
         images = [
             "java" + java_version + "_" + user + "_" + arch + "_" + distro
-            for arch in JAVA_21_ARCHITECTURES
+            for arch in JAVA_ADOPTIUM_ARCHITECTURES
         ],
     )
     for user in USERS
-    for java_version, distro in [("21", "debian12")]
+    for java_version, distro in JAVA_ADOPTIUM_VERSIONS_PER_DISTRO
 ]
 
 [
@@ -281,9 +291,9 @@ DISTRO_SPECIFIC_LIBRARIES = {
             ":temurin_jre_" + java_version + "_" + arch,
         ],
     )
-    for arch in JAVA_21_ARCHITECTURES
+    for arch in JAVA_ADOPTIUM_ARCHITECTURES
     for user in USERS
-    for java_version, distro in [("21", "debian12")]
+    for java_version, distro in JAVA_ADOPTIUM_VERSIONS_PER_DISTRO
 ]
 
 # Temurin Java 21 Debug
@@ -292,11 +302,11 @@ DISTRO_SPECIFIC_LIBRARIES = {
         name = "java" + java_version + "_debug_" + user + "_" + distro,
         images = [
             "java" + java_version + "_debug_" + user + "_" + arch + "_" + distro
-            for arch in JAVA_21_ARCHITECTURES
+            for arch in JAVA_ADOPTIUM_ARCHITECTURES
         ],
     )
     for user in USERS
-    for java_version, distro in [("21", "debian12")]
+    for java_version, distro in JAVA_ADOPTIUM_VERSIONS_PER_DISTRO
 ]
 
 [
@@ -317,8 +327,8 @@ DISTRO_SPECIFIC_LIBRARIES = {
         ],
     )
     for user in USERS
-    for arch in JAVA_21_ARCHITECTURES
-    for java_version, distro in [("21", "debian12")]
+    for arch in JAVA_ADOPTIUM_ARCHITECTURES
+    for java_version, distro in JAVA_ADOPTIUM_VERSIONS_PER_DISTRO
 ]
 
 [
@@ -351,8 +361,8 @@ DISTRO_SPECIFIC_LIBRARIES = {
         ],
     )
     for user in USERS
-    for java_version, distro in JAVA_VERSIONS_PER_DISTRO + [("21", "debian12")]
-    for arch in (JAVA_ARCHITECTURES if java_version != "21" else JAVA_21_ARCHITECTURES)
+    for java_version, distro in JAVA_VERSIONS_PER_DISTRO + JAVA_ADOPTIUM_VERSIONS_PER_DISTRO
+    for arch in (JAVA_ARCHITECTURES if java_version not in JAVA_ADOPTIUM_VERSIONS else JAVA_ADOPTIUM_ARCHITECTURES)
 ]
 
 [
@@ -366,8 +376,8 @@ DISTRO_SPECIFIC_LIBRARIES = {
         ],
     )
     for user in USERS
-    for java_version, distro in JAVA_VERSIONS_PER_DISTRO + [("21", "debian12")]
-    for arch in (JAVA_ARCHITECTURES if java_version != "21" else JAVA_21_ARCHITECTURES)
+    for java_version, distro in JAVA_VERSIONS_PER_DISTRO + JAVA_ADOPTIUM_VERSIONS_PER_DISTRO
+    for arch in (JAVA_ARCHITECTURES if java_version not in JAVA_ADOPTIUM_VERSIONS else JAVA_ADOPTIUM_ARCHITECTURES)
 ]
 
 RULE_NAMES = [
@@ -379,6 +389,8 @@ RULE_NAMES = [
     ("java17_nonroot_debian12", "java17_nonroot_amd64_debian12"),
     ("java21_root_debian12", "java21_root_amd64_debian12"),
     ("java21_nonroot_debian12", "java21_nonroot_amd64_debian12"),
+    ("java22_root_debian12", "java22_root_amd64_debian12"),
+    ("java22_nonroot_debian12", "java22_nonroot_amd64_debian12"),
 ]
 
 [
