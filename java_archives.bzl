@@ -9,6 +9,12 @@ JAVA_RELEASE_VERSIONS = {
     "temurin21_jdk_arm64": "21.0.2",
     "temurin21_jre_ppc64le": "21.0.2",
     "temurin21_jdk_ppc64le": "21.0.2",
+    "temurin22_jre_amd64": "22",
+    "temurin22_jdk_amd64": "22",
+    "temurin22_jre_arm64": "22",
+    "temurin22_jdk_arm64": "22",
+    "temurin22_jre_ppc64le": "22",
+    "temurin22_jdk_ppc64le": "22",
 }
 
 def repositories():
@@ -68,6 +74,66 @@ def repositories():
         strip_prefix = "jdk-21.0.2+13",
         urls = ["https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.2%2B13/OpenJDK21U-jdk_ppc64le_linux_hotspot_21.0.2_13.tar.gz"],
         version = "21.0.2+13",
+        architecture = "ppc64le",
+        control = "//java:control",
+    )
+
+    temurin_archive(
+        name = "temurin22_jre_amd64",
+        sha256 = "faceda94ffd16e177cb674471f29789e48378f9f190eac8523713a0cb3324be9",
+        strip_prefix = "jdk-22+36-jre",
+        urls = ["https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22%2B36/OpenJDK22U-jre_x64_linux_hotspot_22_36.tar.gz"],
+        version = "22+36",
+        architecture = "amd64",
+        control = "//java:control",
+    )
+
+    temurin_archive(
+        name = "temurin22_jdk_amd64",
+        sha256 = "bc3d99e816d0c373f424cd7aa2b6d3e8081a7189fe55c1561616922200ec8e47",
+        strip_prefix = "jdk-22+36",
+        urls = ["https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22%2B36/OpenJDK22U-jdk_x64_linux_hotspot_22_36.tar.gz"],
+        version = "22+36",
+        architecture = "amd64",
+        control = "//java:control",
+    )
+
+    temurin_archive(
+        name = "temurin22_jre_arm64",
+        sha256 = "7c39436c404b770b58bb008872e77a10c94e9922c1638b626b9b22b40ee79932",
+        strip_prefix = "jdk-22+36-jre",
+        urls = ["https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22%2B36/OpenJDK22U-jre_aarch64_mac_hotspot_22_36.pkg"],
+        version = "22+36",
+        architecture = "arm64",
+        control = "//java:control",
+    )
+
+    temurin_archive(
+        name = "temurin22_jdk_arm64",
+        sha256 = "e97e1a6ec2a6bebc04105c1045f1005a212c84dd8fd8d5e0b447c512109845cf",
+        strip_prefix = "jdk-22+36",
+        urls = ["https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22%2B36/OpenJDK22U-jdk_aarch64_mac_hotspot_22_36.pkg"],
+        version = "22+36",
+        architecture = "arm64",
+        control = "//java:control",
+    )
+
+    temurin_archive(
+        name = "temurin22_jre_ppc64le",
+        sha256 = "e1cce04600b388777a1a278dda572a664db14cea034dc131155b3da5e6e885e5",
+        strip_prefix = "jdk-22+36-jre",
+        urls = ["https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22%2B36/OpenJDK22U-jre_ppc64le_linux_hotspot_22_36.tar.gz"],
+        version = "22+36",
+        architecture = "ppc64le",
+        control = "//java:control",
+    )
+
+    temurin_archive(
+        name = "temurin22_jdk_ppc64le",
+        sha256 = "8c062e934d95c639f97b4e51b968eed694a6653248727c3db8bc5e0e55cfd7f4",
+        strip_prefix = "jdk-22+36",
+        urls = ["https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22%2B36/OpenJDK22U-jdk_ppc64le_linux_hotspot_22_36.tar.gz"],
+        version = "22+36",
         architecture = "ppc64le",
         control = "//java:control",
     )
