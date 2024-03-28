@@ -379,6 +379,30 @@ JAVA21 |= {
     for (tag_base, label) in JAVA_VARIATIONS
 }
 
+## JAVA 22 (experimental for now)
+JAVA_22_ARCHITECTURES = [
+    "amd64",
+    "arm64",
+    "ppc64le",
+]
+
+JAVA22 = {
+    "{REGISTRY}/{PROJECT_ID}/java22-debian12:" + tag_base + "-" + arch: "//java:java22_" + label + "_" + arch + "_debian12"
+    for (tag_base, label) in JAVA_VARIATIONS
+    for arch in JAVA_22_ARCHITECTURES
+}
+
+# oci_image_index
+JAVA22 |= {
+    "{REGISTRY}/{PROJECT_ID}/java22:" + tag_base: "//java:java22_" + label + "_debian12"
+    for (tag_base, label) in JAVA_VARIATIONS
+}
+
+JAVA22 |= {
+    "{REGISTRY}/{PROJECT_ID}/java22-debian12:" + tag_base: "//java:java22_" + label + "_debian12"
+    for (tag_base, label) in JAVA_VARIATIONS
+}
+
 ## JETTY
 JETTY = {
     "{REGISTRY}/{PROJECT_ID}/java/jetty:latest": "//java/jetty:jetty_java11_debian11",
@@ -412,6 +436,8 @@ ALL |= JAVA11
 ALL |= JAVA17
 
 ALL |= JAVA21
+
+ALL |= JAVA22
 
 ALL |= JETTY
 

@@ -100,9 +100,9 @@ def repositories():
 
     temurin_archive(
         name = "temurin22_jre_arm64",
-        sha256 = "7c39436c404b770b58bb008872e77a10c94e9922c1638b626b9b22b40ee79932",
+        sha256 = "4748e5024eb0251ddf0f576e4c56d21270b1f2186f62b25fc1d89c888d742ed4",
         strip_prefix = "jdk-22+36-jre",
-        urls = ["https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22%2B36/OpenJDK22U-jre_aarch64_mac_hotspot_22_36.pkg"],
+        urls = ["https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22%2B36/OpenJDK22U-jre_aarch64_linux_hotspot_22_36.tar.gz"],
         version = "22+36",
         architecture = "arm64",
         control = "//java:control",
@@ -110,9 +110,9 @@ def repositories():
 
     temurin_archive(
         name = "temurin22_jdk_arm64",
-        sha256 = "e97e1a6ec2a6bebc04105c1045f1005a212c84dd8fd8d5e0b447c512109845cf",
+        sha256 = "4b52670caea44848cee893e35c804380817b6eff166cf64ee70ca2bfaac3d1c7",
         strip_prefix = "jdk-22+36",
-        urls = ["https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22%2B36/OpenJDK22U-jdk_aarch64_mac_hotspot_22_36.pkg"],
+        urls = ["https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22%2B36/OpenJDK22U-jdk_aarch64_linux_hotspot_22_36.tar.gz"],
         version = "22+36",
         architecture = "arm64",
         control = "//java:control",
